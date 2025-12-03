@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Adivina el Número</title>
+    <style>
+        body {
+            background: #1e1e1e;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 80px;
+        }
+        input {
+            padding: 10px;
+            font-size: 18px;
+            width: 200px;
+            margin-top: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        #msg {
+            margin-top: 20px;
+            font-size: 22px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🎮 Juego: Adivina el Número (1-100)</h1>
+    <p>Introduce un número y te daré pistas.</p>
+
+    <input type="number" id="inputNum" placeholder="Tu número">
+    <br>
+    <button onclick="adivinar()">Probar</button>
+
+    <p id="msg"></p>
+
+    <br><br>
+    <a href="portfolio.html" style="color: #6cf;">Volver al Portfolio</a>
+
+    <script>
+        // Número secreto entre 1 y 100
+        const numeroSecreto = Math.floor(Math.random() * 100) + 1;
+        let intentos = 0;
+
+        function adivinar() {
+            const num = Number(document.getElementById("inputNum").value);
+            const msg = document.getElementById("msg");
+
+            intentos++;
+
+            if (Number.isNaN(num)) {
+                msg.textContent = "❌ Ingresa un número válido.";
+                return;
+            }
+
+            if (num > numeroSecreto) {
+                msg.textContent = "📉 Muy alto. Intenta un número menor.";
+            } else if (num < numeroSecreto) {
+                msg.textContent = "📈 Muy bajo. Intenta un número mayor.";
+            } else {
+                msg.textContent = `🎉 ¡Correcto! El número era ${numeroSecreto}.  
+                Intentos: ${intentos}`;
+            }
+        }
+    </script>
+</body>
+</html>
